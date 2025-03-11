@@ -1,0 +1,40 @@
+name: test autoinstall with brew
+
+on:
+  push:
+    branches:
+      - main
+      # TODO: cross-repo invocation
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        neovim-version: [stable, nightly]
+        plugin-manager: [lazy, nvim] # TODO
+    runs-on: ${{ matrix.os }}
+    steps:
+
+      # setup homebrew
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Cache Homebrew Bundler RubyGems
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ matrix.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ matrix.os }}-rubygems-
+
+      # install neovim
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: ${{ neovim-version }}
+
+      # install neoclip lua plugin
+      - run: echo install neoclip lua plugin
+
+      - run: echo run neovim +checkhealth
