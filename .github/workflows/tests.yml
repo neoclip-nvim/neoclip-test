@@ -32,7 +32,7 @@ jobs:
       - uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
-          version: ${{ neovim-version }}
+          version: ${{ matrix.neovim-version }}
 
       # install neoclip lua plugin
       - run: echo install neoclip lua plugin
