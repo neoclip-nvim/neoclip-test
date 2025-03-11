@@ -3,7 +3,7 @@ name: test autoinstall with brew
 on:
   push:
     branches:
-      - main
+      - master
       # TODO: cross-repo invocation
   pull_request:
 
