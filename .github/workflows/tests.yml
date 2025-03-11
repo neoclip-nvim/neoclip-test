@@ -39,9 +39,9 @@ jobs:
 
       # install neoclip lua plugin
       - run: echo install lua plugin with lazy
-        if: ${{ matrix.plugin-manager }} == lazy
+        if: matrix.plugin-manager == lazy
 
       - run: echo install lua plugin with neovim
-        if: ${{ matrix.plugin-manager }} == neovim
+        if: matrix.plugin-manager == neovim
 
       - run: echo run neovim +checkhealth
