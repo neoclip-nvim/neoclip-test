@@ -16,7 +16,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         neovim-version: [stable, nightly]
-        plugin-manager: [lazy, nvim] # TODO
+        plugin-manager: [lazy, neovim]
     runs-on: ${{ matrix.os }}
     steps:
 
@@ -38,6 +38,10 @@ jobs:
           version: ${{ matrix.neovim-version }}
 
       # install neoclip lua plugin
-      - run: echo install neoclip lua plugin
+      - run: echo install lua plugin with lazy
+        if: ${{ matrix.plugin-manager }} == lazy
+
+      - run: echo install lua plugin with neovim
+        if: ${{ matrix.plugin-manager }} == neovim
 
       - run: echo run neovim +checkhealth
