@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      # TODO: cross-repo invocation
   pull_request:
   repository_dispatch:
     types:
@@ -37,11 +36,10 @@ jobs:
           neovim: true
           version: ${{ matrix.neovim-version }}
 
-      # install neoclip lua plugin
-      - run: echo install lua plugin with lazy
-        if: matrix.plugin-manager == lazy
-
-      - run: echo install lua plugin with neovim
-        if: matrix.plugin-manager == neovim
+      # install neocli
+      - uses: actions/checkout@v1
+      - uses: ./actions/install-neoclip-nolib
+        with:
+          plugin-manager: github.matrix.plugin-manager
 
       - run: echo run neovim +checkhealth

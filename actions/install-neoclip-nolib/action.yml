@@ -1,0 +1,17 @@
+name: Install the lua/ of neoclip
+author: shofel
+inputs:
+  plugin-manager:
+    description: lazy or neovim
+    required: true
+  branch:
+    description: Branch of neoclip repository
+    required: false
+    default: master
+  repository:
+    description: Neoclip repository
+    required: false
+    default: neoclip-nvim/neoclip
+runs:
+  using: node20
+  main: main.mjs
