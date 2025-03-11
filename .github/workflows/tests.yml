@@ -6,6 +6,9 @@ on:
       - master
       # TODO: cross-repo invocation
   pull_request:
+  repository_dispatch:
+    types:
+      - test
 
 jobs:
   test:
