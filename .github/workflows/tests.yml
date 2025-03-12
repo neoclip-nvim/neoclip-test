@@ -44,7 +44,6 @@ jobs:
       - run: npm ci
 
       # install neoclip
-      - uses: actions/checkout@v1
       - uses: ./actions/install-neoclip-nolib
         with:
           plugin-manager: github.matrix.plugin-manager
