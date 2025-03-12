@@ -36,7 +36,18 @@ jobs:
           neovim: true
           version: ${{ matrix.neovim-version }}
 
-      # install neocli
+      # prepare to use actins from this repo
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+      - name: Install dependencies
+        run: pnpm install @actions/core @actions/exec
+
+      # install neoclip
       - uses: actions/checkout@v1
       - uses: ./actions/install-neoclip-nolib
         with:

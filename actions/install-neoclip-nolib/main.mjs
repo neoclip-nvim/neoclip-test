@@ -1,6 +1,5 @@
 import core from "@actions/core"
 import exec from "@actions/exec"
-import github from "@actions/github"
 
 const repository = core.getInput('repository')
 const branch = core.getInput('branch')
