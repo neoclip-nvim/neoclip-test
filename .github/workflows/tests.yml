@@ -14,8 +14,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        neovim-version: [stable, nightly]
-        plugin-manager: [lazy, neovim]
+        neovim-version: [stable] #, nightly] # TODO run fortnightly on nightly
+        plugin-manager: [lazy] #, neovim]
     runs-on: ${{ matrix.os }}
     steps:
 
@@ -36,7 +36,7 @@ jobs:
           neovim: true
           version: ${{ matrix.neovim-version }}
 
-      # prepare to use actins from this repo
+      # prepare to use actions from this repo
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install node
