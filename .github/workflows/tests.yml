@@ -39,14 +39,13 @@ jobs:
       # prepare to use actins from this repo
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        name: Install node
+      - name: Install node
+        uses: actions/setup-node@v4
       - run: npm ci
 
       # install neoclip
-      - uses: actions/checkout@v1
       - uses: ./actions/install-neoclip-nolib
         with:
-          plugin-manager: github.matrix.plugin-manager
+          plugin-manager: ${{ matrix.plugin-manager }}
 
       - run: echo run neovim +checkhealth
