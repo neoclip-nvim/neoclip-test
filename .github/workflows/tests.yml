@@ -13,7 +13,7 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest] # TODO add windows?
         neovim-version: [stable] #, nightly] # TODO run fortnightly on nightly
         plugin-manager: [lazy] #, neovim]
     runs-on: ${{ matrix.os }}
@@ -42,13 +42,13 @@ jobs:
         uses: actions/setup-node@v4
       - run: npm ci
 
-      - name: Install neoclip
+      - name: Run neoclip
         id: install-neoclip
-        uses: ./actions/install-neoclip-nolib
+        uses: ./actions/run-neoclip
         with:
           plugin-manager: ${{ matrix.plugin-manager }}
 
       - name: Check health
-        uses: ./actions/checkhealth-neoclip
+        uses: ./actions/check-report
         with:
           nvim: ${{ steps.install-neoclip.outputs.nvim }}

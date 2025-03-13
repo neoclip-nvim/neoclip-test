@@ -30,3 +30,5 @@ require("lazy").setup({
     branch = 'homebrew' -- TODO get from action inputs
   },
 })
+
+vim.cmd('checkhealth neoclip | w health.log | qa!')
