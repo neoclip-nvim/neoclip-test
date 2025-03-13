@@ -19,7 +19,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
 
-      # setup homebrew
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
@@ -30,8 +29,8 @@ jobs:
           key: ${{ matrix.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
           restore-keys: ${{ matrix.os }}-rubygems-
 
-      # install neovim
-      - uses: rhysd/action-setup-vim@v1
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
           version: ${{ matrix.neovim-version }}
@@ -43,9 +42,13 @@ jobs:
         uses: actions/setup-node@v4
       - run: npm ci
 
-      # install neoclip
-      - uses: ./actions/install-neoclip-nolib
+      - name: Install neoclip
+        id: install-neoclip
+        uses: ./actions/install-neoclip-nolib
         with:
           plugin-manager: ${{ matrix.plugin-manager }}
 
-      - run: echo run neovim +checkhealth
+      - name: Check health
+        uses: ./actions/checkhealth-neoclip
+        with:
+          nvim: ${{ steps.install-neoclip.outputs.nvim }}

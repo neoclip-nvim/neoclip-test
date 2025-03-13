@@ -12,6 +12,9 @@ inputs:
     description: Neoclip repository
     required: false
     default: neoclip-nvim/neoclip
+outputs:
+  nvim:
+    description: nvim with neoclip installed
 runs:
   using: node20
   main: main.mjs
