@@ -12,10 +12,8 @@ switch (pluginManager) {
     break
   case 'lazy':
     // TODO set branch and repository
-    const u = './actions/install-neoclip-nolib/lazy/init.lua'
-    const nvim = `nvim -u ${u}`
-    exec.exec(`${nvim} +'au LazyInstall * q'`)
-    core.setOutput('nvim', nvim)
+    const u = './actions/run-neoclip/lazy/init.lua'
+    exec.exec(`nvim -u ${u}`)
     break
     // TODO post-action: cleanup
   default:

@@ -31,4 +31,4 @@ require("lazy").setup({
   },
 })
 
-vim.cmd('checkhealth neoclip | w health.log | qa!')
+vim.cmd('checkhealth neoclip | w! health.log | qa!')
