@@ -1,8 +1,12 @@
 import core from "@actions/core"
 import exec from "@actions/exec"
 
-const report = core.getInput('report')
+const report = core.getMultilineInput('report')
 
-exec.exec('echo report')
+if (/ERROR/.test(report)) {
+  core.setFailed('ERROR in report')
+}
 
-// TODO fail on fail
+if (!/OK/.test(report)) {
+  core.setFailed('no OK in report')
+}

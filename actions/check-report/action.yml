@@ -1,8 +1,8 @@
 name: Check neoclip health
 author: shofel
 inputs:
-  nvim:
-    description: neovim command
+  report:
+    description: health report string
     required: true
 runs:
   using: node20
