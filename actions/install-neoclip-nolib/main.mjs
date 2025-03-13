@@ -11,9 +11,11 @@ switch (pluginManager) {
     exec.exec('echo NEoVim')
     break
   case 'lazy':
-    // TODO
-    exec.exec('echo LaZy')
+    // TODO set branch and repository
+    const u = './actions/install-neoclip-nolib/lazy/init.lua'
+    exec.exec('nvim', ['-u', u]) 
     break
+    // TODO post-action: cleanup
   default:
     core.setFailed(`unknown plugin-manager: '${pluginManager}'`)
 }
