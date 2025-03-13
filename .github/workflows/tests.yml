@@ -43,7 +43,7 @@ jobs:
       - run: npm ci
 
       - name: Run neoclip
-        id: install-neoclip
+        id: run-neoclip
         uses: ./actions/run-neoclip
         with:
           plugin-manager: ${{ matrix.plugin-manager }}
@@ -51,4 +51,4 @@ jobs:
       - name: Check health
         uses: ./actions/check-report
         with:
-          nvim: ${{ steps.install-neoclip.outputs.nvim }}
+          report: ${{ steps.run-neoclip.outputs.report }}

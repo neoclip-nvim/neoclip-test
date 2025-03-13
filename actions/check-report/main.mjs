@@ -1,9 +1,8 @@
 import core from "@actions/core"
 import exec from "@actions/exec"
 
-const log = 'health.log'
+const report = core.getInput('report')
 
-exec.exec('cat', log)
-exec.exec('rm', log)
+exec.exec('echo report')
 
 // TODO fail on fail

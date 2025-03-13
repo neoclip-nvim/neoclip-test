@@ -12,8 +12,15 @@ switch (pluginManager) {
     break
   case 'lazy':
     // TODO set branch and repository
+    // TODO pass the report filename
     const u = './actions/run-neoclip/lazy/init.lua'
-    exec.exec(`nvim -u ${u}`)
+    await exec.exec(`nvim -u ${u}`)
+
+    let report = ''
+    await exec.exec('cat', ['health.log'], {listeners: {
+      stdout: (buffer) => { report += buffer.toString() }
+    }})
+    core.setOutput('report', report)
     break
     // TODO post-action: cleanup
   default:
